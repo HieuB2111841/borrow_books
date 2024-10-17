@@ -1,0 +1,25 @@
+{
+  "name": "borrow_books",
+  "version": "1.0.0",
+  "description": "Book borrowing management",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HieuB2111841/borrow_books.git"
+  },
+  "author": "HieuB2111841",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HieuB2111841/borrow_books/issues"
+  },
+  "homepage": "https://github.com/HieuB2111841/borrow_books#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.7.1"
+  }
+}
