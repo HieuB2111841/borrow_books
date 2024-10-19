@@ -1,29 +1,27 @@
 <template>
-  <img
-    alt="Vue logo"
-    src="./assets/logo.png"
-  >
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <main-header brand="Borrow Books" />
+  <router-view />
+  <main-footer />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import MainFooter from './components/MainFooter.vue';
+import MainHeader from './components/MainHeader.vue';
 
 export default {
   name: 'App',
+
   components: {
-    HelloWorld
-  }
+    MainHeader,
+    MainFooter,
+  },
+
+  data() {
+    return { };
+  },
+  
+  methods: {
+    
+  },
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
