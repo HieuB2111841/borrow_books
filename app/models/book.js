@@ -6,33 +6,36 @@ const Schema = mongoose.Schema;
 
 const BookSchema = new Schema({
     name: { 
-        type: String 
+        type: String,
+        require: true,
     },
     price: { 
         type: Number, 
-        default: 0 
+        default: 0, 
     },
     bookNumber: { 
         type: Number, 
-        default: 1 
+        default: 1,
     },
     publicationDate: { 
         type: Date, 
-        default: Date.now() 
+        default: Date.now(),
     },
     publisherID: { 
-        type: Object 
+        type: Object,
+        default: null,
     },
     author: { 
         type: String, 
-        default: 'Unknown author' 
+        default: 'Unknown author', 
     },
     origin: { 
-        type: String 
+        type: String,
+        default: 'Unknown origin',
     },
     slug: { 
         type: String, 
-        unique: true 
+        unique: true, 
     },
 }, {
     timestamps: true,
