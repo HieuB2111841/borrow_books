@@ -1,5 +1,7 @@
 <template>
-  <p> Home page </p>
+  <div class="container page">
+    <p> Home page </p>
+  </div>
 </template>
 
 
