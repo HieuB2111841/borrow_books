@@ -1,8 +1,10 @@
 
+const bookRouter = require('./book.route');
 const siteRoute = require('./site.route');
 
 function route (app) {
 
+    app.use('/books', bookRouter);
     app.use('/', siteRoute);
 
     // Handle 404 response
