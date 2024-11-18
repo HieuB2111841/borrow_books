@@ -7,7 +7,7 @@
         Sorry, the page you are looking
         for does not exist.
       </p>
-      <router-link :to="{ name: 'Home' }">
+      <router-link :to="{ name: 'home' }">
         Home
       </router-link>
     </div>

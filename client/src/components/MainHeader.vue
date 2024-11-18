@@ -23,18 +23,22 @@
       >
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a 
+            <router-link 
               class="nav-link active" 
-              aria-current="page" 
-              href="#"
-            > Home </a>
+              :to="{ name: 'home' }" 
+              aria-current="page"
+            > 
+              Home 
+            </router-link>
           </li>
 
           <li class="nav-item">
-            <a 
+            <router-link  
               class="nav-link" 
-              href="#"
-            > Books </a>
+              :to="{ name: 'books' }" 
+            > 
+              Books 
+            </router-link>
           </li>
         </ul>
 

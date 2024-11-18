@@ -24,7 +24,7 @@ export default {
   props: {
     buttonTitle: {
       type: String,
-      default: 'adadasd',
+      default: 'Search',
     },
     placeholder: {
       type: String,

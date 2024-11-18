@@ -26,8 +26,11 @@ export default {
     };
   },
   
-  created() {
-      this.fetchBookData();
+  async created() {
+      await this.fetchBookData();
+      if(this.book != null) {
+        document.title = this.book.name ?? 'Unknown book';
+      }
   },
 
   methods: {

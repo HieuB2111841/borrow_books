@@ -1,19 +1,23 @@
 <template>
-  <footer class="py-3 mt-4 bg-light">
+  <footer class="py-3 bg-light">
     <div class="container">
       <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item">
-          <a 
-            href="#" 
+          <router-link 
+            :to="{ name: 'home' }"
             class="nav-link px-2 text-muted"
-          > Home </a>
+          >
+            Home
+          </router-link> 
         </li>
 
         <li class="nav-item">
-          <a 
-            href="#" 
+          <router-link 
+            :to="{ name: 'books' }"
             class="nav-link px-2 text-muted"
-          > Books </a>
+          >
+            Books
+          </router-link> 
         </li>
       </ul>
       <p class="text-center text-muted">
