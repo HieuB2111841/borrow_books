@@ -9,6 +9,14 @@ const BookSchema = new Schema({
         type: String,
         require: true,
     },
+    description: { 
+        type: String,
+        default: '',
+    },
+    imageURL: {
+        type: String,
+        default: '',
+    },
     price: { 
         type: Number, 
         default: 0, 

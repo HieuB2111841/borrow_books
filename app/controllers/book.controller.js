@@ -1,11 +1,18 @@
 
 const bookModel = require('../models/book');
 const ApiError = require('../api-error');
+const urlUtils = require('../utils/url.utils');
 
 class BookController {
     async findAll (req, res, next) {
         try {
-            const books = await bookModel.find({});
+            let books = await bookModel.find({});
+
+            // to full images URL
+            books = books.map(book => ({
+                ...book.toObject(),
+                imageURL: `${urlUtils.getBaseUrl(req)}/images/books/${book.imageURL}`
+            }));
             return res.send(books);
         } catch (error) {
             return next(new ApiError(500, 'Error retrieving books'));
@@ -34,6 +41,8 @@ class BookController {
             const data = req.body;
             const newBook = await bookModel.create({
                 name: data.name,
+                description: data.description,
+                imageURL: data.imageURL,
                 price: data.price,
                 bookNumber: data.bookNumber,
                 publicationDate: data.publicationDate,

@@ -1,10 +1,12 @@
 
 const bookRouter = require('./book.route');
+const imageRouter = require('./image.route');
 const siteRoute = require('./site.route');
 
 function route (app) {
 
     app.use('/books', bookRouter);
+    app.use('/images', imageRouter);
     app.use('/', siteRoute);
 
     // Handle 404 response
