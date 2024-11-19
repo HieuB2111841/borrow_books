@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="page row row-cols-1 row-cols-md-2 col-md-12 g-4 py-4 ">
+    <div class="page row row-cols-1 row-cols-md-2 col-md-12 gx-4 py-4 ">
       <div class="col-lg-3 col-md-4">
         <side-bar />
       </div>

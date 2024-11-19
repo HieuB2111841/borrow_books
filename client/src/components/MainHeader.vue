@@ -41,21 +41,22 @@
             </router-link>
           </li>
         </ul>
-
-        <search-form />
+        <profile-button v-if="showProfileButton" />
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-import SearchForm from './SearchForm.vue';
+// import SearchForm from './SearchForm.vue';
+import ProfileButton from './ProfileButton.vue';
 
 export default {
   name: 'MainHeader',
 
   components: {
-    SearchForm,
+    // SearchForm,
+    ProfileButton,
   },
 
   props: {
@@ -67,8 +68,14 @@ export default {
 
   data() {
     return { };
-  }
-
+  },
+  
+  computed: {
+    showProfileButton() {
+      // Kiểm tra đường dẫn hiện tại
+      return !['login', 'signup'].includes(this.$route.name);
+    },
+  },
 };
 
 </script>

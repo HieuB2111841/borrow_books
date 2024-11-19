@@ -4,6 +4,9 @@ const authController = require('../controllers/auth.controller');
 const { requireAuth } = require('../middleware/auth.middleware');
 const router = express.Router();
 
+// /auth/status/ -> Trạng thái
+router.get('/status', authController.status);
+
 // /auth/login/ -> Đăng nhập
 router.post('/login', authController.login);
 
