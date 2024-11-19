@@ -1,6 +1,7 @@
 
 const mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
+const bcrypt = require('bcrypt'); 
 const { Schema } = mongoose;
 
 const ReaderSchema = new Schema({
@@ -46,10 +47,35 @@ const ReaderSchema = new Schema({
         trim: true,
         maxLength: [100, 'Address cannot exceed 100 characters'], // Giới hạn ký tự
     },
+    password: {
+        type: String,
+        required: [true, 'Password is required'],
+        minlength: [6, 'Password must be at least 6 characters long'],
+    },
 }, {
     timestamps: true, // Tự động thêm `createdAt` và `updatedAt`
 });
 
 ReaderSchema.plugin(AutoIncrement, { inc_field: 'index' }); // Auto-increment `index`
+
+// Middleware: Băm mật khẩu trước khi lưu
+ReaderSchema.pre('save', async function (next) {
+    if (!this.isModified('password')) {
+        return next(); // Chỉ băm nếu mật khẩu thay đổi hoặc mới
+    }
+
+    try {
+        const salt = await bcrypt.genSalt(10); // Tạo salt
+        this.password = await bcrypt.hash(this.password, salt); // Băm mật khẩu
+        next();
+    } catch (err) {
+        next(err);
+    }
+});
+
+// So sánh mật khẩu đã băm với mật khẩu nhập vào
+ReaderSchema.methods.comparePassword = async function (inputPassword) {
+    return await bcrypt.compare(inputPassword, this.password);
+};
 
 module.exports = mongoose.model('Reader', ReaderSchema);
