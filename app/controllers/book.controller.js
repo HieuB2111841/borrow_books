@@ -23,6 +23,7 @@ class BookController {
         try {
             const { slug } = req.params;
             const book = await bookModel.findOne({ slug: slug });
+            book.imageURL = `${urlUtils.getBaseUrl(req)}/images/books/${book.imageURL}`;
 
             if (!book) {
                 return next(new ApiError(404, 'Book not found'));
