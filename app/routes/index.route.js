@@ -1,10 +1,14 @@
 
+const authRouter = require('./auth.route');
+const readerRouter = require('./reader.route');
 const bookRouter = require('./book.route');
 const imageRouter = require('./image.route');
 const siteRoute = require('./site.route');
 
 function route (app) {
 
+    app.use('/auth', authRouter);
+    app.use('/readers', readerRouter);
     app.use('/books', bookRouter);
     app.use('/images', imageRouter);
     app.use('/', siteRoute);
