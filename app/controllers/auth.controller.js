@@ -27,6 +27,7 @@ class AuthController {
 
             // Lưu thông tin người dùng vào session
             req.session.reader = {
+                _id: reader._id,
                 index: reader['index'],
                 name: `${reader.firstName} ${reader.lastName}`,
             };
@@ -35,6 +36,7 @@ class AuthController {
                 success: true,
                 message: 'Login successful',
                 reader: {
+                    _id: req.session.reader._id,
                     index: req.session.reader['index'],
                     name: req.session.reader['name'],
                 },

@@ -29,7 +29,7 @@ class BorrowingBooksController {
     // Mượn sách
     async borrowBook (req, res) {
         try {
-            const { readerId, bookId } = req.body;
+            const { readerId, bookId, borrowDate } = req.body;
 
             // Kiểm tra xem Reader và Book có tồn tại không
             const reader = await Reader.findById(readerId);
@@ -67,7 +67,11 @@ class BorrowingBooksController {
             // }
 
             // Tạo mới borrowing record
-            const borrowing = new BorrowingBooks({ readerId, bookId });
+            const borrowing = new BorrowingBooks({ 
+                readerId, 
+                bookId, 
+                borrowDate: borrowDate ?? Date.now(),
+            });
             await borrowing.save();
 
             // Giảm số lượng sách
