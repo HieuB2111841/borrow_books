@@ -1,6 +1,7 @@
 const BorrowingBooks = require('../models/borrowing_books');
 const Book = require('../models/book');
 const Reader = require('../models/reader');
+const urlUtils = require('../utils/url.utils');
 
 class BorrowingBooksController {
 
@@ -89,6 +90,48 @@ class BorrowingBooksController {
                 success: false,
                 message: 'Internal server error', 
                 error: error.message 
+            });
+        }
+    };
+
+    async getBorrowedBooks (req, res) {
+        try {
+            const { index } = req.params;
+
+            const reader = await Reader.findOne({ index });
+            
+            if (!reader) {
+                return res.status(404).json({ 
+                    success: false,
+                    message: 'Reader not found',
+                });
+            }
+
+            // Tìm các bản ghi mượn sách theo index người dùng
+            const borrowedBooks = await BorrowingBooks.find({ readerId: reader._id, isReturned: false })
+                .populate('bookId') // Lấy thông tin chi tiết sách
+                .exec();
+
+            const formattedBooks = borrowedBooks.map(borrow => ({
+                id: borrow._id,
+                book: {
+                    ...borrow.bookId.toObject(), // Toàn bộ thông tin sách
+                    imageURL: `${urlUtils.getBaseUrl(req)}/images/books/${borrow.bookId.imageURL || 'default.jpg'}`, // Thêm URL đầy đủ
+                },
+                borrowDate: borrow.borrowDate,
+            }));
+
+            // Trả về danh sách sách đã mượn
+            return res.status(200).json({
+                success: true,
+                data: formattedBooks,
+            });
+        } 
+        catch (error) {
+            return res.status(500).json({
+                success: false,
+                message: 'Lỗi máy chủ',
+                error: error.message,
             });
         }
     };

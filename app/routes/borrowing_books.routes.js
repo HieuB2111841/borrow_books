@@ -8,6 +8,9 @@ router.get('/', borrowingBooksController.getBorrowingList); // Lấy danh sách 
 // /borrow/ -> Mượn sách
 router.post('/', borrowingBooksController.borrowBook); // Mượn sách
 
+// /borrow/:index -> Lấy danh sách mượn bởi reader index
+router.get('/:index', borrowingBooksController.getBorrowedBooks);
+
 // /borrow/return/:id -> Trả sách
 router.put('/return/:id', borrowingBooksController.returnBook); // Trả sách
 

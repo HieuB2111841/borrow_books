@@ -1,14 +1,19 @@
 <template>
   <div class="profile-favorite-book">
     <h2 class="text-center my-4">
-      Favorite Books
+      Sách yêu thích
     </h2>
     <!-- Hiển thị loader khi danh sách đang tải -->
     <div 
       v-if="loading" 
       class="text-center"
     >
-      <p>Loading your favorite books...</p>
+      <div 
+        class="spinner-border" 
+        role="status"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
 
     <!-- Hiển thị danh sách sách yêu thích -->
@@ -30,7 +35,7 @@
         v-else 
         class="text-center"
       >
-        <p>You have no favorite books yet.</p>
+        <p>Bạn chưa có cuốn sách yêu thích nào.</p>
       </div>
     </div>
   </div>
