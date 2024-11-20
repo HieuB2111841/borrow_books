@@ -71,7 +71,7 @@
                 :class="{ active: liked }"
                 @click="toggleLike"
               >
-                Thích
+                {{ liked ? 'Đã thích' : 'Thích' }}
               </button>
 
               <!-- Nút Theo dõi -->
@@ -104,7 +104,9 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapState, mapActions } from 'vuex';
+import axios from '../config/axios.config';
+
 export default {
   name: 'BookDetails',
 
@@ -119,9 +121,16 @@ export default {
     return {
       book: null,
       loading: true,
-      liked: false,
-      followed: false,
     };
+  },
+
+  computed: {
+    ...mapState(['favorites']), // Lấy danh sách yêu thích từ Vuex Store
+
+    // Kiểm tra sách có trong danh sách yêu thích hay không
+    liked() {
+      return this.favorites.some((fav) => fav._id === this.book?._id);
+    },
   },
 
   async created() {
@@ -133,6 +142,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(['toggleFavorites']), // Gọi action để thêm/xóa sách khỏi danh sách yêu thích
+
     async fetchBookData() {
       try {
         const response = await axios.get(`http://localhost:3000/books/${this.slug}`);
@@ -154,20 +165,12 @@ export default {
       }
     },
 
-    toggleLike() {
-      this.liked = !this.liked;
-    },
-
-    toggleFollow() {
-      this.followed = !this.followed;
-    },
-
-    registerBorrow() {
-      if (this.book.bookNumber > 0) {
-        alert(`Đã đăng ký mượn sách: ${this.book.name}`);
+    // Xử lý thêm/xóa sách khỏi danh sách yêu thích
+    async toggleLike() {
+      if (this.book) {
+        await this.toggleFavorites(this.book._id); // Gọi action trong Vuex
       }
     },
-
   },
 };
 

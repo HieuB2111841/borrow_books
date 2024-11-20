@@ -2,6 +2,7 @@
 const authRouter = require('./auth.route');
 const readerRouter = require('./reader.route');
 const bookRouter = require('./book.route');
+const borrowingBookRouter = require('./borrowing_books.routes');
 const imageRouter = require('./image.route');
 const siteRoute = require('./site.route');
 
@@ -10,6 +11,7 @@ function route (app) {
     app.use('/auth', authRouter);
     app.use('/readers', readerRouter);
     app.use('/books', bookRouter);
+    app.use('/borrow', borrowingBookRouter);
     app.use('/images', imageRouter);
     app.use('/', siteRoute);
 
