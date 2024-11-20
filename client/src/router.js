@@ -1,5 +1,4 @@
-
-import { createRouter, createWebHistory  } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import HomePage from './views/HomePage.vue';
 import LoginPage from './views/LoginPage.vue';
@@ -7,37 +6,41 @@ import BooksPage from './views/BooksPage.vue';
 import BookDetails from './views/BookDetails.vue';
 import NotFound from './views/NotFound.vue';
 
+// Import routes
+import profileRoutes from './router/profile.router';
+
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomePage,
-    meta: { title: 'Home' }
+    meta: { title: 'Home' },
   },
   {
     path: '/login',
     name: 'login',
     component: LoginPage,
-    meta: { title: 'Log in' }
+    meta: { title: 'Log in' },
   },
+  ...profileRoutes, // Sử dụng cấu hình ProfilePage 
   {
     path: '/books/',
     name: 'books',
     component: BooksPage,
-    meta: { title: 'Books' }
+    meta: { title: 'Books' },
   },
   {
     path: '/books/:slug',
     name: 'book-detail',
     component: BookDetails,
     props: true,
-    meta: { title: 'Loading...' }
+    meta: { title: 'Loading...' },
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: NotFound,
-    meta: { title: 'Not Found' }
+    meta: { title: 'Not Found' },
   },
 ];
 

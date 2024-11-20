@@ -24,6 +24,14 @@
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
         <li>
+          <router-link 
+            class="dropdown-item" 
+            :to="{ name: 'profile' }"
+          >
+            Profile
+          </router-link>
+        </li>
+        <li>
           <button 
             class="dropdown-item text-danger" 
             @click="logout"
