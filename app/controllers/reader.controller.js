@@ -49,12 +49,15 @@ class ReaderController {
         }
     };
 
-    // Lấy thông tin chi tiết của một Reader theo ID
+    // Lấy thông tin chi tiết của một Reader theo index
     async getReader (req, res) {
         try {
             const reader = await Reader.findOne({'index' : req.params.index});
             if (!reader) {
-                return res.status(404).json({ message: 'Reader not found' });
+                return res.status(404).json({ 
+                    success: false,
+                    message: 'Reader not found',
+                });
             }
             res.status(200).json({
                 success: true,
