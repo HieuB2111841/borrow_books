@@ -47,6 +47,10 @@ const ReaderSchema = new Schema({
         trim: true,
         maxLength: [100, 'Address cannot exceed 100 characters'], // Giới hạn ký tự
     },
+    favorite: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Book', // Liên kết đến mô hình Book
+    }],
     password: {
         type: String,
         required: [true, 'Password is required'],

@@ -30,8 +30,7 @@ class AuthController {
                 index: reader['index'],
                 name: `${reader.firstName} ${reader.lastName}`,
             };
-            // console.log(`after login: req.session.reader: {index: ${req.session.reader.index}, name: ${req.session.reader.name}}`);
-
+            
             return res.status(200).json({
                 success: true,
                 message: 'Login successful',

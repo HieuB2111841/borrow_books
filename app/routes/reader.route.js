@@ -18,4 +18,13 @@ router.put('/index/:index', readerController.updateReader);
 // /readers/index/:index -> Xóa Reader theo index
 router.delete('/index/:index', readerController.deleteReader);
 
+// /readers/favorite/:index -> Lấy danh sách sách yêu thích của Reader
+router.get('/favorite/:index', readerController.getFavoriteBooks);
+
+// /readers/favorite/:index -> Thêm sách vào danh sách yêu thích của Reader
+router.post('/favorite/:index', readerController.addFavoriteBook);
+
+// /readers/favorite/:index/:bookId -> Xóa sách khỏi danh sách yêu thích
+router.delete('/favorite/:index/:bookId', readerController.removeFavoriteBook);
+
 module.exports = router;
