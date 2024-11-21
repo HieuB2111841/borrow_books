@@ -36,7 +36,7 @@
         <div class="row mb-3">
           <div class="col-md-6">
             <strong>Ngày sinh:</strong>
-            <p>{{ user.birthday }}</p>
+            <p>{{ user.birthday.split('T')[0] }}</p>
           </div>
           <div class="col-md-6">
             <strong>Giới tính:</strong>
